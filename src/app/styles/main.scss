@@ -1,0 +1,33 @@
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Styles
+body {
+  font-family: $font-family;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include flex-center;
+  min-height: 100vh;
+}
+
+.button {
+  background-color: $primary-color;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+} 

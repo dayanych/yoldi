@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+} 
