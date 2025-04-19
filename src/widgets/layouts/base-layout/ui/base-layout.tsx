@@ -1,21 +1,20 @@
 import { Outlet } from 'react-router-dom';
 
 import { useUser } from '@/shared/lib/hooks/use-user';
-import { Header } from '@/widgets/header';
+import { Footer, Header } from '@/widgets';
 
 import styles from './base-layout.module.scss';
 
 export const BaseLayout = () => {
-  const { user, logout } = useUser();
+  const { user } = useUser();
 
   return (
     <div className={styles.layout}>
-      <Header user={user} logout={logout} />
+      <Header user={user} />
       <main className={styles.main}>
-        <div className={styles.content}>
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };

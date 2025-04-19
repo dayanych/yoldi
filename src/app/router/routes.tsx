@@ -1,6 +1,6 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import { ProfilePage } from '@/pages';
+import { ProfilePage, SignInPage, SignUpPage } from '@/pages';
 import { BaseLayout, ProtectedLayout, PublicLayout } from '@/widgets';
 
 const routes: RouteObject[] = [
@@ -26,11 +26,11 @@ const routes: RouteObject[] = [
           },
           {
             path: '/sign-in',
-            element: <div>Sign In Page</div>,
+            element: <SignInPage />,
           },
           {
             path: '/sign-up',
-            element: <div>Sign Up Page</div>,
+            element: <SignUpPage />,
           },
         ],
       },

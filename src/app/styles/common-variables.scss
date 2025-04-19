@@ -2,17 +2,22 @@
   --font-family: Inter, sans-serif;
   --font-size: 16px;
 
+  --color-primary: #FEFF80;
+
   --text-primary: #000000;
+  --line-height: 1.6;
 
   --background-primary: #FFFFFF;
   --background-secondary: #F3F3F3;
 
   --strokes-primary: #D4D4D4;
-  --strokes-secondady: #E6E6E6;
+  --strokes-secondary: #E6E6E6;
 
   --error-color: #F00000;
 
   --gray: #838383;
+
+  --container-padding: 30px;
 }
 
 @mixin custom-scroll {
