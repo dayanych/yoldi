@@ -1,6 +1,68 @@
+$button-font-size: 16px;
+
+$primary-button-padding: 12px 33px;
+$primary-button-border-radius: 5px;
+$primary-button-border: 1px solid #000;
+$primary-button-background-color: #000;
+$primary-button-focus-border-color: var(--gray);
+$primary-button-color: #fff;
+
+$secondary-button-padding: 7px 33px;
+$secondary-button-border-radius: 5px;
+$secondary-button-border: 1px solid var(--strokes-primary);
+$secondary-button-background-color: var(--background-primary);
+$secondary-button-focus-border-color: var(--gray);
+$secondary-button-color: var(--text-primary);
+
+$disabled-button-background-color: var(--strokes-primary);
+$disabled-button-color: var(--background-secondary);
+
 .button {
-  background-color: #000;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: $button-font-size;
+
+  &.primary {
+    padding: $primary-button-padding;
+    color: $primary-button-color;
+    background-color: $primary-button-background-color;
+    border: $primary-button-border;
+    border-radius: $primary-button-border-radius;
+    transition: all 0.3s ease;
+
+    &:focus,
+    &:active {
+      border-color: $primary-button-focus-border-color;
+    }
+  }
+
+  &.secondary {
+    padding: $secondary-button-padding;
+    color: $secondary-button-color;
+    background-color: $secondary-button-background-color;
+    border: $secondary-button-border;
+    border-radius: $secondary-button-border-radius;
+    transition: all 0.3s ease;
+
+    &:focus,
+    &:hover {
+      border-color: $secondary-button-focus-border-color;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $disabled-button-color;
+    background-color: $disabled-button-background-color;
+    border-color: $disabled-button-background-color;
+
+    &:focus,
+    &:active,
+    &:hover {
+      border-color: $disabled-button-background-color;
+    }
+  }
 }

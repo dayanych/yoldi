@@ -1,14 +1,21 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import { BaseLayout } from '@/widgets/layouts/base-layout';
-import { ProtectedLayout } from '@/widgets/layouts/protected-layout';
-import { PublicLayout } from '@/widgets/layouts/public-layout';
+import { ProfilePage } from '@/pages';
+import { BaseLayout, ProtectedLayout, PublicLayout } from '@/widgets';
 
 const routes: RouteObject[] = [
   {
     path: '/',
     element: <BaseLayout />,
     children: [
+      {
+        path: '/users',
+        element: <div>Users Page</div>,
+      },
+      {
+        path: '/users/:slug',
+        element: <div>User Page</div>,
+      },
       {
         path: '/',
         element: <PublicLayout />,
@@ -37,13 +44,13 @@ const routes: RouteObject[] = [
           },
           {
             path: '/profile',
-            element: <div>Profile</div>,
-          },
-          {
-            path: '/users',
-            element: <div>Users Page</div>,
+            element: <ProfilePage />,
           },
         ],
+      },
+      {
+        path: '*',
+        element: <div>404 Page</div>,
       },
     ],
   },

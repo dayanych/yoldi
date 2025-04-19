@@ -1,4 +1,5 @@
 import './styles/main.scss';
+import 'line-awesome/dist/line-awesome/css/line-awesome.min.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';

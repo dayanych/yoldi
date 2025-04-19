@@ -1,0 +1,148 @@
+@use "../../../app/styles/common-variables.scss" as common;
+
+$input-height: 50px;
+$input-padding-horizontal: 20px;
+$input-padding-vertical: 12px;
+$input-border: 1px solid var(--strokes-primary);
+$input-border-radius: 4px;
+$input-font-size: 16px;
+$input-focus-border-color: var(--gray);
+$input-disabled-background-color: var(--background-secondary);
+$input-disabled-color: var(--gray);
+$input-error-border-color: var(--error-color);
+
+$label-color: var(--gray);
+
+$icon-size: 25px;
+
+$prefix-background-color: var(--background-secondary);
+$prefix-color: var(--gray);
+
+.label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .labelText {
+    padding-left: 2px;
+    font-weight: 500;
+    color: $label-color;
+  }
+
+  .prefixContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .prefix {
+      height: $input-height;
+      padding: $input-padding-vertical $input-padding-horizontal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $prefix-background-color;
+      border: $input-border;
+      border-right: none;
+      border-radius: $input-border-radius 0 0 $input-border-radius;
+      color: $prefix-color;
+      white-space: nowrap;
+    }
+  }
+  
+  .inputContainer {
+    position: relative;
+    width: 100%;
+
+    .input {
+      width: 100%;
+      height: $input-height;
+      padding: $input-padding-vertical $input-padding-horizontal;
+      border: $input-border;
+      border-radius: $input-border-radius;
+      font-size: $input-font-size;
+      transition: all 0.3s ease;
+  
+      &:focus,
+      &:active,
+      &:hover {
+        outline: none;
+        border-color: $input-focus-border-color;
+      }
+  
+      &[data-left-icon="true"] {
+        padding-left: $input-padding-horizontal + $icon-size + 10px;
+      }
+  
+      &[data-right-icon="true"] {
+        padding-right: $input-padding-horizontal + $icon-size + 10px;
+      }
+  
+      &[disabled] {
+        background-color: $input-disabled-background-color;
+        color: $input-disabled-color;
+      }
+  
+      &.error {
+        border-color: $input-error-border-color;
+      }
+    }
+  
+    .icon {
+      position: absolute;
+      top: 50%;
+      width: $icon-size;
+      height: $icon-size;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-50%);
+  
+      &.iconLeft {
+        left: $input-padding-horizontal;
+      }
+  
+      &.iconRight {
+        right: $input-padding-horizontal;
+      }
+  
+      &.disabled {
+        i {
+          color: $input-disabled-color;
+        }
+      }
+    }
+
+    .withPrefix {
+      border-radius: 0 $input-border-radius $input-border-radius 0;
+    }
+  }
+
+  .textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: $input-padding-vertical $input-padding-horizontal;
+    border-radius: $input-border-radius;
+    font-size: $input-font-size;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+    @include common.custom-scroll;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      border-color: $input-focus-border-color;
+    }
+
+    &[disabled] {
+      background-color: $input-disabled-background-color;
+      color: $input-disabled-color;
+    }
+
+    &.error {
+      border-color: $input-error-border-color;
+    }
+  }
+}
