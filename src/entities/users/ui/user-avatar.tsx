@@ -1,15 +1,16 @@
 import clsx from 'clsx';
 
+import { User } from '../model/types';
 import styles from './user-avatar.module.scss';
 
 interface UserAvatarProps {
-  user: any;
+  user: User;
   size?: number;
   className?: string;
 }
 
 export const UserAvatar = ({ user, size = 32, className }: UserAvatarProps) => {
-  const userFirstLetter = [user.name, user.surname, user.email]
+  const userFirstLetter = [user.name, user.email]
     .filter(Boolean)
     .join(' ')
     .charAt(0)
@@ -23,8 +24,12 @@ export const UserAvatar = ({ user, size = 32, className }: UserAvatarProps) => {
         height: size,
       }}
     >
-      {user.avatar ? (
-        <img src={user.avatar} alt={user.name} className={styles.avatarImage} />
+      {user?.image?.url ? (
+        <img
+          src={user.image.url}
+          alt={user.name}
+          className={styles.avatarImage}
+        />
       ) : (
         <span>{userFirstLetter}</span>
       )}

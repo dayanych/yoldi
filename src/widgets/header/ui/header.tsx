@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-import { UserAvatar } from '@/entities/users';
+import { User, UserAvatar } from '@/entities';
 import { Button } from '@/shared/ui';
 
 import styles from './header.module.scss';
 
 interface HeaderProps {
-  user?: any;
+  user: User | null;
 }
 
 export const Header = ({ user }: HeaderProps) => {

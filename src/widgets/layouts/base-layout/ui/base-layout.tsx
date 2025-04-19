@@ -10,7 +10,7 @@ export const BaseLayout = () => {
 
   return (
     <div className={styles.layout}>
-      <Header user={user} />
+      <Header user={user ?? null} />
       <main className={styles.main}>
         <Outlet />
       </main>

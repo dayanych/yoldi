@@ -1,10 +1,6 @@
 import { createContext, ReactNode, useState } from 'react';
 
-type User = {
-  id: string;
-  email: string;
-  name: string;
-};
+import { User } from '@/entities';
 
 type AuthContextType = {
   auth: string;
