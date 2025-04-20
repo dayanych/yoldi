@@ -6,6 +6,7 @@ import styles from './input.module.scss';
 interface IconConfig {
   type: IconProps['name'];
   className?: string;
+  onClick?: () => void;
 }
 
 interface InputProps
@@ -50,6 +51,7 @@ export const Input = ({
               className={clsx(styles.icon, styles.iconLeft, {
                 [styles.disabled]: props.disabled,
               })}
+              onClick={leftIcon.onClick}
             >
               <Icon
                 name={leftIcon.type}
@@ -75,6 +77,7 @@ export const Input = ({
               className={clsx(styles.icon, styles.iconRight, {
                 [styles.disabled]: props.disabled,
               })}
+              onClick={rightIcon.onClick}
             >
               <Icon
                 name={rightIcon.type}
