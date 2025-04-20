@@ -9,7 +9,7 @@ interface UserAvatarProps {
   className?: string;
 }
 
-export const UserAvatar = ({ user, size = 32, className }: UserAvatarProps) => {
+export const UserAvatar = ({ user, size = 50, className }: UserAvatarProps) => {
   const userFirstLetter = [user.name, user.email]
     .filter(Boolean)
     .join(' ')
@@ -31,7 +31,7 @@ export const UserAvatar = ({ user, size = 32, className }: UserAvatarProps) => {
           className={styles.avatarImage}
         />
       ) : (
-        <span>{userFirstLetter}</span>
+        <span style={{ fontSize: size * 0.3 }}>{userFirstLetter}</span>
       )}
     </div>
   );

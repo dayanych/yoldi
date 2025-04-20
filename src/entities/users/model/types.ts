@@ -10,6 +10,6 @@ export interface User {
   email: string;
   slug: string;
   description: string;
-  image: Image;
-  cover: Image;
+  image: Image | null;
+  cover: Image | null;
 }

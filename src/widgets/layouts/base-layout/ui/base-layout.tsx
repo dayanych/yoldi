@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { useUser } from '@/shared/lib/hooks/use-user';
+import { useUser } from '@/shared/lib';
 import { Footer, Header } from '@/widgets';
 
 import styles from './base-layout.module.scss';

@@ -1,20 +1,13 @@
-import { createContext, ReactNode, useState } from 'react';
+import { useState } from 'react';
 
 import { User } from '@/entities';
+import { useUser } from '@/shared/lib';
 
-type AuthContextType = {
-  auth: string;
-  setAuth: (value: string) => void;
-  user: User | null;
-  setUser: (user: User | null) => void;
-  logout: () => void;
-};
+export const useAccountPage = () => {
+  const { user, logout } = useUser();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-export const AuthContext = createContext<AuthContextType | null>(null);
-
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [auth, setAuth] = useState<string>('');
-  const [user, setUser] = useState<User | null>({
+  const mockAccount: User = {
     slug: 'vladislav',
     name: 'Владислав',
     email: 'example@gmail.com',
@@ -22,16 +15,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты или прототипы содержимым. Это тестовый контент, который не должен нести никакого смысла, лишь показать наличие самого текста или продемонстрировать типографику в деле.',
     image: null,
     cover: null,
-  });
-
-  const logout = () => {
-    setAuth('');
-    setUser(null);
   };
 
-  return (
-    <AuthContext.Provider value={{ auth, setAuth, user, setUser, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
+  const isMe = user?.slug === mockAccount.slug;
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleEditModalOpen = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleEditModalSave = (data: any) => data;
+
+  return {
+    user: mockAccount,
+    isMe,
+    isEditModalOpen,
+    logout,
+    handleEditModalClose,
+    handleEditModalSave,
+    handleEditModalOpen,
+  };
+};

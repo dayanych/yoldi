@@ -53,7 +53,7 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
         ref={modalContentRef}
         onClick={(e) => e.stopPropagation()}
       >
-        {title && <h2 className={styles.title}>{title}</h2>}
+        {title && <h2 className="title">{title}</h2>}
         {children}
       </div>
     </div>

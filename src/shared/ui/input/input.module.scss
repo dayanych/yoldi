@@ -122,6 +122,7 @@ $prefix-color: var(--gray);
     width: 100%;
     min-height: 100px;
     padding: $input-padding-vertical $input-padding-horizontal;
+    border: $input-border;
     border-radius: $input-border-radius;
     font-size: $input-font-size;
     font-family: inherit;

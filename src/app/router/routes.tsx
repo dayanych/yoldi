@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import { ProfilePage, SignInPage, SignUpPage } from '@/pages';
-import { BaseLayout, ProtectedLayout, PublicLayout } from '@/widgets';
+import { AccountPage, AccountsPage, SignInPage, SignUpPage } from '@/pages';
+import { BaseLayout, PublicLayout } from '@/widgets';
 
 const routes: RouteObject[] = [
   {
@@ -9,12 +9,12 @@ const routes: RouteObject[] = [
     element: <BaseLayout />,
     children: [
       {
-        path: '/users',
-        element: <div>Users Page</div>,
+        path: '/accounts',
+        element: <AccountsPage />,
       },
       {
-        path: '/users/:slug',
-        element: <div>User Page</div>,
+        path: '/accounts/:slug',
+        element: <AccountPage />,
       },
       {
         path: '/',
@@ -31,20 +31,6 @@ const routes: RouteObject[] = [
           {
             path: '/sign-up',
             element: <SignUpPage />,
-          },
-        ],
-      },
-      {
-        path: '/',
-        element: <ProtectedLayout />,
-        children: [
-          {
-            path: '/',
-            element: <Navigate to="/profile" />,
-          },
-          {
-            path: '/profile',
-            element: <ProfilePage />,
           },
         ],
       },
