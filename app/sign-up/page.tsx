@@ -11,6 +11,8 @@ export default function SignUpPage() {
     isButtonDisabled,
     passwordType,
     passwordIconType,
+    isLoading,
+    error,
     handleChange,
     handleSubmit,
     togglePasswordVisibility,
@@ -24,8 +26,9 @@ export default function SignUpPage() {
         formSubmitButton={{
           text: 'Создать аккаунт',
           disabled: isButtonDisabled,
-          loading: false,
+          loading: isLoading,
         }}
+        error={error}
       >
         <Input
           name="name"
