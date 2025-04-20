@@ -1,5 +1,4 @@
 import { Button } from '@/shared/ui';
-import { UpdateProfilePayload } from '@/shared/api';
 
 import styles from './auth-form.module.scss';
 
@@ -12,7 +11,7 @@ interface AuthFormProps {
     loading: boolean;
   };
   error?: string | null;
-  onSubmit: (data: UpdateProfilePayload) => void;
+  onSubmit: () => void;
 }
 
 export const AuthForm = ({
@@ -24,7 +23,7 @@ export const AuthForm = ({
 }: AuthFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(e);
+    onSubmit();
   };
 
   return (

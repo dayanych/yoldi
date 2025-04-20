@@ -15,6 +15,9 @@ const interSans = Inter({
 export const metadata: Metadata = {
   title: "yoldi.agency — тестовое задание",
   description: "yoldi.agency — тестовое задание",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
