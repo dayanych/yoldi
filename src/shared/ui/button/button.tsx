@@ -10,6 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
   };
   className?: string;
+  loading?: boolean;
   children: React.ReactNode;
 }
 
@@ -18,6 +19,7 @@ export const Button = ({
   variant = 'primary',
   icon,
   className,
+  loading,
   ...props
 }: ButtonProps) => {
   return (
@@ -25,9 +27,15 @@ export const Button = ({
       className={clsx(styles.button, styles[variant], className)}
       {...props}
     >
-      {icon && (
+      {icon && !loading && (
         <div className={clsx(styles.icon, styles.iconLeft)}>
           <Icon name={icon.type} className={styles.icon} />
+        </div>
+      )}
+
+      {loading && (
+        <div className={clsx(styles.icon, styles.iconLeft)}>
+          <Icon name="spinner" className={styles.icon} />
         </div>
       )}
 

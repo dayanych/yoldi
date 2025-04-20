@@ -1,26 +1,30 @@
+import { useProfileEditModal } from '@/process';
 import { User } from '@/entities';
 import { Button, Input, Modal, Textarea } from '@/shared/ui';
+import { UpdateProfilePayload } from '@/shared/api';
 
-import { useProfileEditModal } from '../../../process/accounts/lib/use-profile-edit-modal';
 import styles from './profile-edit-modal.module.scss';
 
 interface ProfileEditModalProps {
   isOpen: boolean;
   initialData: User;
+  isLoading: boolean;
+  error: string | null;
   onClose: () => void;
-  onSave: (data: any) => void;
+  onSave: (data: UpdateProfilePayload) => void;
 }
 
 export const ProfileEditModal = ({
   isOpen,
-  onClose,
   initialData,
+  isLoading,
+  error,
+  onClose,
   onSave,
 }: ProfileEditModalProps) => {
   const { formData, handleSave, handleInputChange } = useProfileEditModal(
     initialData,
     onSave,
-    onClose,
   );
 
   return (
@@ -52,11 +56,13 @@ export const ProfileEditModal = ({
           rows={7}
         />
 
+        {error && <div className={styles.error}>{error}</div>}
+
         <div className={styles.actions}>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" onClick={onClose} disabled={isLoading}>
             Отмена
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" loading={isLoading}>
             Сохранить
           </Button>
         </div>

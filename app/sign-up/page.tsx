@@ -24,6 +24,7 @@ export default function SignUpPage() {
         formSubmitButton={{
           text: 'Создать аккаунт',
           disabled: isButtonDisabled,
+          loading: false,
         }}
       >
         <Input

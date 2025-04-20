@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { AuthProvider, ReactQueryProvider } from "@/app";
+import { AuthProvider } from "@/app";
 import { BaseLayout } from "@/widgets";
 
 import "line-awesome/dist/line-awesome/css/line-awesome.min.css";
@@ -25,11 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={interSans.variable}>
-        <ReactQueryProvider>
-          <AuthProvider>
-            <BaseLayout>{children}</BaseLayout>
-          </AuthProvider>
-        </ReactQueryProvider>
+        <AuthProvider>
+          <BaseLayout>{children}</BaseLayout>
+        </AuthProvider>
       </body>
     </html>
   );

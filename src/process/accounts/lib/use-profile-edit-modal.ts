@@ -1,25 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { redirect } from 'next/navigation';
 
 import { User } from '@/entities';
+import { UpdateProfilePayload } from '@/shared/api';
 
 export const useProfileEditModal = (
   initialData: User,
-  onSave: (data: any) => void,
-  onClose: () => void,
+  onSave: (data: UpdateProfilePayload) => void,
 ) => {
   const [formData, setFormData] = useState({
     name: initialData.name,
     slug: initialData.slug,
-    description: initialData.description,
+    description: initialData.description ?? '',
   });
 
   useEffect(() => {
     setFormData({
       name: initialData.name,
       slug: initialData.slug,
-      description: initialData.description,
+      description: initialData.description ?? '',
     });
   }, [initialData]);
 
@@ -28,12 +29,18 @@ export const useProfileEditModal = (
 
     if (!onSave) return;
 
-    onSave(formData);
-    onClose();
+    onSave({
+      name: formData.name.trim(),
+      slug: formData.slug.trim(),
+      description: formData.description.trim(),
+    });
   };
 
   const handleInputChange = (value: string, name: string) => {
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return {

@@ -1,12 +1,21 @@
 'use client';
 
-import { useUser } from '@/shared/lib';
+import { useMe } from '@/shared/lib';
+import { Loader } from '@/shared/ui';
 import { Footer, Header } from '@/widgets';
 
 import styles from './base-layout.module.scss';
 
 export const BaseLayout = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useUser();
+  const { user, isLoading } = useMe();
+
+  if (isLoading) {
+    return (
+      <div className={styles.loader}>
+        <Loader className={styles.loaderIcon} />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.layout}>

@@ -7,6 +7,7 @@ import { User, UserAvatar } from '@/entities';
 import { Button } from '@/shared/ui';
 
 import styles from './header.module.scss';
+import Link from 'next/link';
 
 interface HeaderProps {
   user: User | null;
@@ -32,10 +33,10 @@ export const Header = ({ user }: HeaderProps) => {
       </div>
 
       {user ? (
-        <div className={styles.userContainer}>
+        <Link href={`/accounts/${user.slug}`} className={styles.userContainer}>
           {user.name}
           <UserAvatar user={user} size={50} />
-        </div>
+        </Link>
       ) : (
         <Button
           variant="secondary"

@@ -9,3 +9,14 @@
   flex: 1;
   background-color: var(--background-secondary);
 }
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  
+  .loaderIcon {
+    font-size: 3rem;
+  }
+}

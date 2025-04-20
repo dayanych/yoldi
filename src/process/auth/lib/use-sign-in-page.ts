@@ -1,16 +1,23 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { redirect } from 'next/navigation';
 
-import { IconProps } from '@/shared/ui/icon';
+import { routes } from '@/app';
+import { authApi } from '@/shared/api';
+import { IconProps } from '@/shared/ui';
+import { useAuth } from '@/shared/lib';
 
 export const useSignInPage = () => {
+  const { setAuth } = useAuth();
   const [passwordType, setPasswordType] = useState('password');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
   const handleChange = (value: string, name: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -18,15 +25,32 @@ export const useSignInPage = () => {
     }));
   };
 
-  const handleSubmit = () => formData;
+  const handleSubmit = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      
+      const value = await authApi.signIn({
+        email: formData.email.trim(),
+        password: formData.password.trim(),
+      });
+
+      setAuth(value);
+      redirect(routes.accounts);
+    } catch (err) {      
+      setError('Неверный email или пароль');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const togglePasswordVisibility = () => {
     setPasswordType(passwordType === 'password' ? 'text' : 'password');
   };
 
   const isButtonDisabled = useMemo(() => {
-    return !formData.email || !formData.password;
-  }, [formData]);
+    return !formData.email || !formData.password || isLoading;
+  }, [formData, isLoading]);
 
   const passwordIconType: IconProps['name'] = useMemo(() => {
     return passwordType === 'password' ? 'eye' : 'eyeSlash';
@@ -37,6 +61,8 @@ export const useSignInPage = () => {
     isButtonDisabled,
     passwordType,
     passwordIconType,
+    isLoading,
+    error,
     handleChange,
     handleSubmit,
     togglePasswordVisibility,

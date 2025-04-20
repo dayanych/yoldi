@@ -11,6 +11,8 @@ export default function SignInPage() {
     isButtonDisabled,
     passwordType,
     passwordIconType,
+    error,
+    isLoading,
     handleChange,
     handleSubmit,
     togglePasswordVisibility,
@@ -21,9 +23,11 @@ export default function SignInPage() {
       <AuthForm
         title="Вход в Yoldi Agency"
         onSubmit={handleSubmit}
+        error={error}
         formSubmitButton={{
           text: 'Войти',
           disabled: isButtonDisabled,
+          loading: isLoading,
         }}
       >
         <Input

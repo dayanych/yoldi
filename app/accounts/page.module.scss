@@ -23,7 +23,8 @@ $border-color: var(--strokes-secondary);
 
 .accountItem {
   padding: 10px 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 50px 1fr;
   align-items: center;
   gap: 12px;
   border-bottom: 1px solid $border-color;
@@ -38,10 +39,28 @@ $border-color: var(--strokes-secondary);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .userName {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .userEmail {
+    color: var(--gray);
+  }
 }
 
-.userEmail {
-  color: var(--gray);
+.loaderIcon {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
 }
 
 @media (max-width: 768px) {

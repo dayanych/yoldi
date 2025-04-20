@@ -3,10 +3,10 @@
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 
-import { useUser } from '@/shared/lib';
+import { useMe } from '@/shared/lib';
 
 export const usePublicLayout = () => {
-  const { user } = useUser();
+  const { user } = useMe();
 
   useEffect(() => {
     if (user) {

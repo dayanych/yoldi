@@ -9,7 +9,7 @@ export interface User {
   name: string;
   email: string;
   slug: string;
-  description: string;
+  description: string | null;
   image: Image | null;
   cover: Image | null;
 }

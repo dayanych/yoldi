@@ -10,6 +10,7 @@ const icons = {
   pen: <i className="las la-pen la-lg" />,
   signOut: <i className="las la-sign-out-alt la-lg" />,
   close: <i className="las la-times la-lg" />,
+  spinner: <i className="las la-circle-notch la-spin la-lg" />,
 };
 
 export interface IconProps {

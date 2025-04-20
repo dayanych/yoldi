@@ -66,6 +66,22 @@ $description-max-width: 600px;
       width: max-content;
     }
   }
+
+  .errorContainer {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .loaderIcon {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 768px) {

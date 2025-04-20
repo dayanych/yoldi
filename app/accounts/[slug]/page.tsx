@@ -5,9 +5,10 @@ import React from 'react';
 import { useAccountPage } from '@/process';
 import { UserAvatar } from '@/entities';
 import { ProfileEditModal } from '@/features';
-import { Button } from '@/shared/ui';
+import { Button, Loader } from '@/shared/ui';
 
 import styles from './page.module.scss';
+import { redirect } from 'next/navigation';
 
 export default function AccountPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = React.use(params);
@@ -15,15 +16,33 @@ export default function AccountPage({ params }: { params: Promise<{ slug: string
   const {
     user,
     isMe,
-    isEditModalOpen,
+    isLoading,
+    editModalStates,
     handleLogout,
     handleEditModalClose,
     handleEditModalSave,
     handleEditModalOpen,
   } = useAccountPage(slug);
 
+  if (isLoading) {
+    return (
+      <div className={styles.accountPage}>
+        <Loader className={styles.loaderIcon} />
+      </div>
+    );
+  }
+
   if (!user) {
-    return <div className={styles.error}>User not found</div>;
+    return (
+      <div className={styles.accountPage}>
+        <div className={styles.errorContainer}>
+          <div className="title">Пользователь не найден</div>
+          <Button variant="secondary" onClick={() => redirect('/accounts')}>
+            Вернуться назад
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -77,10 +96,12 @@ export default function AccountPage({ params }: { params: Promise<{ slug: string
       </div>
 
       <ProfileEditModal
-        isOpen={isEditModalOpen}
+        isOpen={editModalStates.isOpen}
         initialData={user}
         onClose={handleEditModalClose}
         onSave={handleEditModalSave}
+        isLoading={editModalStates.isLoading}
+        error={editModalStates.error}
       />
     </div>
   );

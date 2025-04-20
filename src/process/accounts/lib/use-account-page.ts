@@ -2,35 +2,67 @@
 
 import { useState } from 'react';
 import { redirect } from 'next/navigation';
+import { AxiosError } from 'axios';
+import useSWR from 'swr';
 
-import { User } from '@/entities';
-import { useUser } from '@/shared/lib';
+import { useMe } from '@/shared/lib';
+import { accountsApi, profileApi, UpdateProfilePayload } from '@/shared/api';
 
 export const useAccountPage = (slug: string) => {
-  const { user, logout } = useUser();
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const { user: myUser, logout, mutate } = useMe();
+  const { data: user, isLoading } = useSWR(
+    `/api/accounts/${slug}`,
+    () => accountsApi.getAccount(slug),
+    {
+      revalidateOnFocus: false,
+      errorRetryCount: 0,
+    }
+  );
+  const [editModalStates, setEditModalStates] = useState<{
+    isOpen: boolean;
+    isLoading: boolean;
+    error: string | null;
+  }>({
+    isOpen: false,
+    isLoading: false,
+    error: null,
+  });
 
-  const mockAccount: User = {
-    slug: 'vladislav',
-    name: 'Владислав',
-    email: 'example@gmail.com',
-    description:
-      'Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты или прототипы содержимым. Это тестовый контент, который не должен нести никакого смысла, лишь показать наличие самого текста или продемонстрировать типографику в деле.',
-    image: null,
-    cover: null,
-  };
-
-  const isMe = user?.slug === slug;
+  const isMe = myUser?.slug === slug;
 
   const handleEditModalClose = () => {
-    setIsEditModalOpen(false);
+    if (editModalStates.isLoading) return;
+    setEditModalStates((prev) => ({ ...prev, isOpen: false }));
   };
 
   const handleEditModalOpen = () => {
-    setIsEditModalOpen(true);
+    setEditModalStates((prev) => ({ ...prev, isOpen: true }));
   };
 
-  const handleEditModalSave = (data: any) => data;
+  const handleEditModalSave = async (data: UpdateProfilePayload) => {
+    try {
+      setEditModalStates((prev) => ({ ...prev, isLoading: true }));
+      setEditModalStates((prev) => ({ ...prev, error: null }));
+
+      const updatedUser = await profileApi.updateProfile(data);
+
+      if (updatedUser) {
+        mutate(updatedUser);
+      }
+
+      if (data.slug.trim() !== user?.slug) {
+        redirect(`/accounts/${data.slug}`);
+      }
+    } catch (error) {
+      if (error instanceof AxiosError && error?.response?.data) {
+        setEditModalStates((prev) => ({ ...prev, error: 'Ошибка при обновлении профиля: ' + error?.response?.data.message }));
+      } else {
+        setEditModalStates((prev) => ({ ...prev, error: 'Ошибка при обновлении профиля: Неизвестная ошибка' }));
+      }
+    } finally {
+      setEditModalStates((prev) => ({ ...prev, isLoading: false }));
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -38,9 +70,10 @@ export const useAccountPage = (slug: string) => {
   };
 
   return {
-    user: mockAccount,
+    user: isMe ? myUser : user,
     isMe,
-    isEditModalOpen,
+    isLoading,
+    editModalStates,
     handleLogout,
     handleEditModalClose,
     handleEditModalSave,

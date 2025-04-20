@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export const useFooter = () => {
@@ -11,11 +12,11 @@ export const useFooter = () => {
   const footerContent =
     pathname === '/sign-in' ? (
       <p>
-        Еще нет аккаунта? <a href="/sign-up">Зарегистрироваться</a>
+        Еще нет аккаунта? <Link href="/sign-up">Зарегистрироваться</Link>
       </p>
     ) : (
       <p>
-        Уже есть аккаунт? <a href="/sign-in">Войти</a>
+        Уже есть аккаунт? <Link href="/sign-in">Войти</Link>
       </p>
     );
 

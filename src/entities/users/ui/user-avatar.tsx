@@ -26,7 +26,7 @@ export const UserAvatar = ({ user, size = 50, className }: UserAvatarProps) => {
       }}
     >
       {user?.image?.url ? (
-        <Image
+        <img
           src={user.image.url}
           alt={user.name}
           className={styles.avatarImage}
