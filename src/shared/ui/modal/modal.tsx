@@ -1,4 +1,6 @@
-import clsx from 'clsx';
+'use client';
+
+  import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
 
 import styles from './modal.module.scss';

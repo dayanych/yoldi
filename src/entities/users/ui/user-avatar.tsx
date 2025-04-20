@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import clsx from 'clsx';
 
 import { User } from '../model/types';
@@ -25,10 +26,12 @@ export const UserAvatar = ({ user, size = 50, className }: UserAvatarProps) => {
       }}
     >
       {user?.image?.url ? (
-        <img
+        <Image
           src={user.image.url}
           alt={user.name}
           className={styles.avatarImage}
+          width={size}
+          height={size}
         />
       ) : (
         <span style={{ fontSize: size * 0.3 }}>{userFirstLetter}</span>

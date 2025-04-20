@@ -1,5 +1,3 @@
-@use "../../../app/styles/common-variables.scss" as common;
-
 $input-height: 50px;
 $input-padding-horizontal: 20px;
 $input-padding-vertical: 12px;
@@ -128,7 +126,6 @@ $prefix-color: var(--gray);
     font-family: inherit;
     resize: vertical;
     transition: all 0.3s ease;
-    @include common.custom-scroll;
 
     &:focus,
     &:active,

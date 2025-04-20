@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom';
+'use client';
 
 import { usePublicLayout } from '../lib/use-public-layout';
 
-export const PublicLayout = () => {
+export const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   usePublicLayout();
 
-  return <Outlet />;
+  return children;
 };

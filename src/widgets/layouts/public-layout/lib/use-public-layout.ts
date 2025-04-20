@@ -1,15 +1,16 @@
+'use client';
+
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect } from 'next/navigation';
 
 import { useUser } from '@/shared/lib';
 
 export const usePublicLayout = () => {
-  const navigate = useNavigate();
   const { user } = useUser();
 
   useEffect(() => {
     if (user) {
-      navigate('/profile');
+      redirect('/accounts');
     }
-  }, [navigate]);
+  }, [user]);
 };

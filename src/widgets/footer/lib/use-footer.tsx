@@ -1,19 +1,21 @@
-import { Link, useLocation } from 'react-router-dom';
+'use client';
+
+import { usePathname } from 'next/navigation';
 
 export const useFooter = () => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   const isAuthPage =
-    location.pathname === '/sign-in' || location.pathname === '/sign-up';
+    pathname === '/sign-in' || pathname === '/sign-up';
 
   const footerContent =
-    location.pathname === '/sign-in' ? (
+    pathname === '/sign-in' ? (
       <p>
-        Еще нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
+        Еще нет аккаунта? <a href="/sign-up">Зарегистрироваться</a>
       </p>
     ) : (
       <p>
-        Уже есть аккаунт? <Link to="/sign-in">Войти</Link>
+        Уже есть аккаунт? <a href="/sign-in">Войти</a>
       </p>
     );
 

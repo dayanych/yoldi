@@ -1,18 +1,18 @@
-import { Outlet } from 'react-router-dom';
+'use client';
 
 import { useUser } from '@/shared/lib';
 import { Footer, Header } from '@/widgets';
 
 import styles from './base-layout.module.scss';
 
-export const BaseLayout = () => {
+export const BaseLayout = ({ children }: { children: React.ReactNode }) => {
   const { user } = useUser();
 
   return (
     <div className={styles.layout}>
       <Header user={user ?? null} />
       <main className={styles.main}>
-        <Outlet />
+        {children}
       </main>
       <Footer />
     </div>

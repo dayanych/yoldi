@@ -1,4 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+'use client';
+
+import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 import { User, UserAvatar } from '@/entities';
 import { Button } from '@/shared/ui';
@@ -10,13 +13,18 @@ interface HeaderProps {
 }
 
 export const Header = ({ user }: HeaderProps) => {
-  const navigate = useNavigate();
-
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
         <div className={styles.logo}>
-          <img className={styles.logoImage} src="/logo.svg" alt="logo" />
+          <Image
+            className={styles.logoImage}
+            src="/logo.svg"
+            alt="logo"
+            width={64}
+            height={29}
+            objectFit="cover"
+          />
         </div>
         <p className={styles.description}>
           Разрабатываем и запускаем сложные веб проекты
@@ -32,7 +40,7 @@ export const Header = ({ user }: HeaderProps) => {
         <Button
           variant="secondary"
           className={styles.loginButton}
-          onClick={() => navigate('/sign-in')}
+          onClick={() => redirect('/sign-in')}
         >
           Войти
         </Button>

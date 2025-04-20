@@ -1,4 +1,6 @@
-import { createContext, ReactNode, useState } from 'react';
+'use client';
+
+import { createContext, useState, ReactNode } from 'react';
 
 import { User } from '@/entities';
 
