@@ -1,7 +1,7 @@
+import { AuthForm } from '@/features';
 import { Input } from '@/shared/ui';
 
 import { useSignInPage } from '../lib/use-sign-in-page';
-import { AuthForm } from './auth-form';
 
 export const SignInPage = () => {
   const {
@@ -17,11 +17,11 @@ export const SignInPage = () => {
   return (
     <AuthForm
       title="Вход в Yoldi Agency"
+      onSubmit={handleSubmit}
       formSubmitButton={{
         text: 'Войти',
         disabled: isButtonDisabled,
       }}
-      onSubmit={handleSubmit}
     >
       <Input
         name="email"

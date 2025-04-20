@@ -1,7 +1,7 @@
+import { AuthForm } from '@/features';
 import { Input } from '@/shared/ui';
 
 import { useSignUpPage } from '../lib/use-sign-up-page';
-import { AuthForm } from './auth-form';
 
 export const SignUpPage = () => {
   const {

@@ -1,9 +1,9 @@
-import { UserAvatar } from '@/entities/users/ui/user-avatar';
+import { UserAvatar } from '@/entities';
+import { ProfileEditModal } from '@/features';
 import { Button } from '@/shared/ui';
 
 import { useAccountPage } from '../lib/use-account-page';
 import styles from './account-page.module.scss';
-import { ProfileEditModal } from './profile-edit-modal';
 
 export const AccountPage = () => {
   const {

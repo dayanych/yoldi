@@ -1,7 +1,7 @@
 import { User } from '@/entities';
 import { Button, Input, Modal, Textarea } from '@/shared/ui';
 
-import { useProfileEditModal } from '../lib/use-profile-edit-modal';
+import { useProfileEditModal } from '../../../pages/accounts/lib/use-profile-edit-modal';
 import styles from './profile-edit-modal.module.scss';
 
 interface ProfileEditModalProps {
