@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
 
 import { User } from '@/entities';
 import { UpdateProfilePayload } from '@/shared/api';
