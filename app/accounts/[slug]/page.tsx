@@ -5,10 +5,9 @@ import React from 'react';
 import { useAccountPage } from '@/process';
 import { UserAvatar } from '@/entities';
 import { ProfileEditModal } from '@/features';
-import { Button, Loader } from '@/shared/ui';
+import { Button, Icon, Loader } from '@/shared/ui';
 
 import styles from './page.module.scss';
-import { redirect } from 'next/navigation';
 
 export default function AccountPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = React.use(params);
@@ -22,6 +21,7 @@ export default function AccountPage({ params }: { params: Promise<{ slug: string
     handleEditModalClose,
     handleEditModalSave,
     handleEditModalOpen,
+    handleRedirectBack,
   } = useAccountPage(slug);
 
   if (isLoading) {
@@ -37,7 +37,7 @@ export default function AccountPage({ params }: { params: Promise<{ slug: string
       <div className={styles.accountPage}>
         <div className={styles.errorContainer}>
           <div className="title">Пользователь не найден</div>
-          <Button variant="secondary" onClick={() => redirect('/accounts')}>
+          <Button variant="secondary" onClick={handleRedirectBack}>
             Вернуться назад
           </Button>
         </div>
@@ -93,6 +93,10 @@ export default function AccountPage({ params }: { params: Promise<{ slug: string
             Выйти
           </Button>
         )}
+
+        <Button className={styles.backButton} variant="secondary" onClick={handleRedirectBack}>
+          <Icon name="arrowLeft" />
+        </Button>
       </div>
 
       <ProfileEditModal

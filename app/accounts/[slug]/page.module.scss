@@ -4,6 +4,7 @@ $avatar-margin-top: calc($avatar-size / (-2));
 $description-max-width: 600px;
 
 .accountPage {
+  position: relative;
   width: 100%;
   background-color: var(--background-primary);
 
@@ -63,6 +64,12 @@ $description-max-width: 600px;
     .logoutButton {
       margin-top: 64px;
       width: max-content;
+    }
+
+    .backButton {
+      position: absolute;
+      left: 20px;
+      top: 20px;
     }
 
     button {

@@ -11,6 +11,7 @@ const icons = {
   signOut: <i className="las la-sign-out-alt la-lg" />,
   close: <i className="las la-times la-lg" />,
   spinner: <i className="las la-circle-notch la-spin la-lg" />,
+  arrowLeft: <i className="las la-arrow-left la-lg" />,
 };
 
 export interface IconProps {
