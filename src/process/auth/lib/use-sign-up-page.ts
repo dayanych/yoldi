@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from 'react';
 import { AxiosError } from 'axios';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { routes } from '@/app';
 import { authApi } from '@/shared/api';
 import { useAuth } from '@/shared/lib';
 import { IconProps } from '@/shared/ui';
 
 export const useSignUpPage = () => {
+  const router = useRouter();
   const { setAuth } = useAuth();
   const [passwordType, setPasswordType] = useState('password');
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ export const useSignUpPage = () => {
       });
 
       setAuth(value);
-      redirect(routes.accounts);
+      router.push(routes.accounts);
     } catch (error) {
       if (error instanceof AxiosError) {
         setError('Ошибка: ' + error.response?.data.message);

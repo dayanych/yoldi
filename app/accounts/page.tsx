@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 
+import { routes } from '@/app';
 import { User, UserAvatar } from '@/entities';
 import { useAccountsPage } from '@/process';
 import { Loader } from '@/shared/ui';
@@ -25,7 +26,7 @@ export default function AccountsPage() {
         <h1 className="title">Список аккаунтов</h1>
         <div className={styles.accountsList}>
           {users.map((user) => (
-            <Link key={user.slug} href={`/accounts/${user.slug}`} className={styles.accountItem}>
+            <Link key={user.slug} href={routes.accountDetails(user.slug)} className={styles.accountItem}>
               <UserAvatar user={user as User} size={50} />
               <div className={styles.userInfo}>
                 <div className={styles.userName}>{user.name}</div>

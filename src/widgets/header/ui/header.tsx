@@ -1,13 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
+import { routes } from '@/app';
 import { User, UserAvatar } from '@/entities';
 import { Button } from '@/shared/ui';
 
 import styles from './header.module.scss';
-import Link from 'next/link';
 
 interface HeaderProps {
   user: User | null;
@@ -33,18 +34,19 @@ export const Header = ({ user }: HeaderProps) => {
       </div>
 
       {user ? (
-        <Link href={`/accounts/${user.slug}`} className={styles.userContainer}>
+        <Link href={routes.accountDetails(user.slug)} className={styles.userContainer}>
           {user.name}
           <UserAvatar user={user} size={50} />
         </Link>
       ) : (
-        <Button
-          variant="secondary"
-          className={styles.loginButton}
-          onClick={() => redirect('/sign-in')}
-        >
-          Войти
-        </Button>
+        <Link href={routes.signIn}>
+          <Button
+            variant="secondary"
+            className={styles.loginButton}
+          >
+            Войти
+          </Button>
+        </Link>
       )}
     </header>
   );
