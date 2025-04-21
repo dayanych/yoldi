@@ -28,7 +28,7 @@ export const ProfileEditModal = ({
   );
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Редактировать профиль">
+    <Modal isOpen={isOpen} onClose={onClose} title="Редактировать профиль" className={styles.modal}>
       <form onSubmit={handleSave} className={styles.form}>
         <Input
           value={formData.name}
@@ -51,9 +51,9 @@ export const ProfileEditModal = ({
           value={formData.description}
           name="description"
           onChange={handleInputChange}
+          className={styles.textarea}
           label="Описание"
           placeholder="Введите описание"
-          rows={7}
         />
 
         {error && <div className={styles.error}>{error}</div>}

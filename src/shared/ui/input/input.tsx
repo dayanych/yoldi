@@ -96,6 +96,7 @@ export const Textarea = ({
   onChange,
   error,
   label,
+  className,
   ...props
 }: TextareaProps) => {
   return (
@@ -106,7 +107,7 @@ export const Textarea = ({
         {...props}
         value={value}
         onChange={(e) => onChange(e.target.value, e.target.name || '')}
-        className={clsx(styles.textarea, {
+        className={clsx(styles.textarea, className, {
           [styles.error]: error,
         })}
       />

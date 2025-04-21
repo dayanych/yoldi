@@ -21,7 +21,7 @@ export default function SignUpPage() {
   return (
     <PublicLayout>
       <AuthForm
-        title="Регистрация в Yoldi Agency"
+        title="Регистрация в&nbsp;Yoldi&nbsp;Agency"
         onSubmit={handleSubmit}
         formSubmitButton={{
           text: 'Создать аккаунт',

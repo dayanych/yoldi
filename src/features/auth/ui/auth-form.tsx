@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { Button } from '@/shared/ui';
 
 import styles from './auth-form.module.scss';
@@ -29,7 +31,7 @@ export const AuthForm = ({
   return (
     <div className={styles.formContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1 className="title">{title}</h1>
+        <h1 className={clsx(styles.title, 'title')}>{title}</h1>
 
         <div className={styles.formContent}>{children}</div>
 

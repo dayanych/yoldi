@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px var(--container-padding);
+  padding: 15px var(--container-padding) 15px 20px;
   background-color: var(--background-primary);
   border-bottom: 1px solid var(--strokes-primary);
 
@@ -39,6 +39,10 @@
 
   .loginButton {
     font-weight: 500;
+  }
+
+  button {
+    height: 40px;
   }
 }
 

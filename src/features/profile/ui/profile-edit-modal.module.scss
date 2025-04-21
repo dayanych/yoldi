@@ -1,13 +1,30 @@
+$header-height: 80px;
+$textarea-line-height: 1.6em;
+$modal-padding: 30px;
+
+.modal {
+  max-height: 580px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 13px;
   margin-top: 25px;
 
+  .textarea {
+    height: calc($textarea-line-height * 5);
+  }
+
   .actions {
+    margin-top: 12px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+
+    button {
+      height: 50px;
+    }
   }
 
   .error {
@@ -15,5 +32,26 @@
     font-size: 14px;
     font-weight: 500;
     text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    max-height: calc(100% - $header-height);
+  }
+
+  .form {
+    flex: 1;
+
+    .textarea {
+      height: calc($textarea-line-height * 11);
+    }
+
+    .actions {
+      position: absolute;
+      bottom: $modal-padding;
+      left: $modal-padding;
+      right: $modal-padding;
+    }
   }
 }

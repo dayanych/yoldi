@@ -24,7 +24,7 @@ $prefix-color: var(--gray);
 
   .labelText {
     padding-left: 2px;
-    font-weight: 500;
+    font-weight: 400;
     color: $label-color;
   }
 
@@ -124,7 +124,8 @@ $prefix-color: var(--gray);
     border-radius: $input-border-radius;
     font-size: $input-font-size;
     font-family: inherit;
-    resize: vertical;
+    line-height: 1.6;
+    resize: none;
     transition: all 0.3s ease;
 
     &:focus,

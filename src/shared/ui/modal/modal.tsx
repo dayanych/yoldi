@@ -1,6 +1,6 @@
 'use client';
 
-  import clsx from 'clsx';
+import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
 
 import styles from './modal.module.scss';
@@ -9,10 +9,11 @@ interface ModalProps {
   isOpen: boolean;
   children: React.ReactNode;
   title?: string;
+  className?: string;
   onClose: () => void;
 }
 
-export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
+export const Modal = ({ isOpen, onClose, children, title, className }: ModalProps) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
       aria-hidden={!isOpen}
     >
       <div
-        className={styles.modalContent}
+        className={clsx(styles.modalContent, className)}
         ref={modalContentRef}
         onClick={(e) => e.stopPropagation()}
       >
